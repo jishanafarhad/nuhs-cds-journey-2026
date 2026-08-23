@@ -1013,7 +1013,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;color:var(--ink);background:var(
   .f1-lights i{width:32px;height:32px}
   .sb-nm{font-size:1rem}
   .sgwrap{--u:15px}
-  .sg-stage{height:24rem;max-width:44rem}
+  .sg-stage{height:clamp(16rem, calc(100vh - 30rem), 24rem);max-width:44rem}
   .sg-geno,.sg-cap,.sg-skip{font-size:1.05rem}
   .svn-field{max-height:30rem}
   .svn-cap{font-size:1.05rem}
@@ -1181,6 +1181,76 @@ body{font-family:'DM Sans',system-ui,sans-serif;color:var(--ink);background:var(
 #sgb4:not(.woken) .sg-wake::after{right:-2.3rem}
 @keyframes sgSnore{0%{opacity:0;transform:translate(0,0) scale(.7)}20%{opacity:1}
   100%{opacity:0;transform:translate(18px,-34px) scale(1.35)}}
+
+/* nav titles: truly centred on every card, regardless of what flanks them */
+.nav{position:relative}
+.nav .navlbl{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);white-space:nowrap}
+#s3 .nav .logo{display:none}
+
+/* the seven PGx steps: one straight line on wide screens */
+@media (min-width:1400px){
+  #s3-stage2 .way{grid-template-columns:repeat(7,1fr);
+    width:min(86rem,calc(100vw - 4rem));margin-left:50%;transform:translateX(-50%);gap:.8rem}
+  #s3-stage2 .way-step{padding:.95rem .9rem}
+  #s3-stage2 .way-step h5{font-size:.86rem;line-height:1.25}
+  #s3-stage2 .way-step p{font-size:.74rem;line-height:1.5}
+}
+
+/* ═══════════════ FIT PASS · four screens, 24" no-scroll ═══════════════ */
+@media (min-width:1500px){
+  /* HOME — everything on one screen */
+  .home-hero{padding:.5rem 2rem .2rem}
+  .home-script{font-size:1rem;margin-bottom:0}
+  .home-title{font-size:2.35rem}
+  .home-sub{font-size:.9rem;margin-top:.45rem}
+  .home-quote{margin-top:.5rem;font-size:.98rem;min-height:1.5em}
+  .deck{margin-top:.8rem;gap:.8rem}
+  .deck-row{gap:1.1rem}
+  .row-lbl{margin:.1rem 0 -.15rem}
+  .deck .flip,.deck .flip.wide{width:15rem;height:16rem}
+  .flip .cicon{font-size:2.5rem;margin:.3rem 0 .15rem}
+  .flip .cgame{font-size:1.3rem;margin-bottom:.4rem}
+  .flip .cphrase{font-size:.88rem}
+  .flip .chint{margin-top:.6rem}
+  .flip .btitle{font-size:1.15rem;margin-bottom:1rem}
+  .deck-cta{font-size:.9rem;margin-top:.45rem}
+  .home-foot{padding:.6rem 2rem;margin-top:.55rem}
+  .slice-tally{margin-bottom:.3rem}
+
+  /* RESCUE · rebuild — compress the fix tray */
+  #s1-stage2 .s-sub{margin-bottom:.8rem}
+  #s1-stage2 .fix{padding:.62rem .95rem}
+  #s1-stage2 .fix-d{font-size:.74rem}
+  #s1-stage2 .tray{gap:.45rem}
+  #s1-stage2 .bulb{margin:.7rem 0 0}
+
+  /* KILL IT · Signal vs Noise — the field yields to the viewport */
+  #s2-stage3 .s-sub{margin-bottom:.7rem}
+  #s2-stage3 .svn{padding:1.1rem 1.4rem 1.1rem}
+  #s2-stage3 .svn-state{margin-bottom:.6rem}
+  #s2-stage3 .svn-field{max-height:clamp(14rem,calc(100vh - 34.5rem),24rem)}
+  #s2-stage3 .svn-leg{margin-top:.65rem}
+  #s2-stage3 .svn-cap{margin-top:.6rem}
+  #s2-stage3 .svn-pay{margin-top:.15rem}
+  #s2-stage3 .src{margin-top:.45rem}
+
+  /* PGX · pathway — animation and the seven steps share one screen */
+  #s3-stage2 .scene{padding-top:1.1rem;padding-bottom:1.2rem}
+  #s3-stage2 .s-sub{margin:.3rem 0 .6rem}
+  #s3-stage2 .sgwrap{padding:.9rem 1.3rem 1rem}
+  #s3-stage2 .sg-h{font-size:1.25rem}
+  #s3-stage2 .sg-stage{height:clamp(13rem,calc(100vh - 38.5rem),20rem);margin-top:.5rem}
+  #s3-stage2 .sg-cap{margin-top:.5rem}
+  #s3-stage2 .sg-dots{margin-top:.4rem}
+  #s3-stage2 .way{margin:.8rem 0 .3rem;gap:.7rem}
+  #s3-stage2 .way-step{padding:.75rem .8rem}
+  #s3-stage2 .way-step h5{font-size:.82rem;margin:.3rem 0 .2rem}
+  #s3-stage2 .way-step p{font-size:.7rem;line-height:1.45}
+  #s3-stage2 .bulb{margin:.6rem 0 0;padding:.7rem .95rem}
+  #s3-stage2 .bulb div{font-size:.78rem}
+  #s3-stage2 .footer-note{margin-top:.7rem}
+  #s3-stage2 div[style*="justify-content:flex-end"]{margin-top:.8rem!important}
+}
 
 </style>
 </head>
@@ -1493,7 +1563,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;color:var(--ink);background:var(
 
   <div id="s3-stage2" class="stage scroll"><div class="scene">
     <h1 class="s-title">How that result <em>got there.</em></h1>
-    <p class="s-sub">The advisory you just saw is the last two seconds of a much longer story. Before any alert can fire, a patient has to be recruited, a sample taken, a genotype called, and a result filed in a form the EMR can actually reason about — then it waits, sometimes for years, for the order that makes it matter.</p>
+    <p class="s-sub">The advisory you just saw is the last two seconds of a much longer story — one blood draw, one result filed, waiting sometimes for years for the order that makes it matter.</p>
 
     <div class="sgwrap">
       <button class="ghostbtn sg-replay" onclick="SG.play()">↻ Replay</button>
@@ -1538,15 +1608,15 @@ body{font-family:'DM Sans',system-ui,sans-serif;color:var(--ink);background:var(
       <div class="sg-dots" id="sgDots"><i></i><i></i><i></i><i></i><i></i></div>
     </div>
 
-    <h1 class="s-title" style="font-size:1.35rem;margin-top:1.8rem">Seven steps, <em>one blood draw.</em></h1>
+    <h1 class="s-title" style="font-size:1.2rem;margin-top:.9rem">Seven steps, <em>one blood draw.</em></h1>
     <div class="way">
-      <div class="way-step"><span class="wtag">Recruit</span><h5>Patient recruited</h5><p>The patient is enrolled and the <b>PPGX ordering bundle</b> is placed — the panel is ordered up front, not in response to a particular prescription.</p></div>
-      <div class="way-step"><span class="wtag">Test</span><h5>Lab performs the test</h5><p>The laboratory runs the panel and the result is emailed back to NUHS Robotic Process Automation.</p></div>
-      <div class="way-step"><span class="wtag">Automate</span><h5>RPA generates the HL7 message</h5><p>NUHS RPA reads the Excel file out of the email and auto-generates an <b>HL7 result message</b> — no one retypes a genotype.</p></div>
-      <div class="way-step"><span class="wtag">File</span><h5>Result filed into NGEMR</h5><p>The message comes into NGEMR via interface, so the genotype lands as discrete data the record can reason about rather than a document someone has to open.</p></div>
-      <div class="way-step"><span class="wtag">Verify</span><h5>Final verification by NUH lab</h5><p>The NUH laboratory verifies the filed result before it is allowed to drive anything clinically.</p></div>
-      <div class="way-step live"><span class="wtag">Prompt</span><h5>Prompts guide medication ordering</h5><p>At the moment of prescribing, prompts driven by the PPGX result surface the recommendation — with an alternative already named.</p></div>
-      <div class="way-step"><span class="wtag">Monitor</span><h5>Data monitoring within NGEMR</h5><p>Every firing is monitored inside NGEMR, so the team can see whether the prompts are being acted on and tune them if they are not.</p></div>
+      <div class="way-step"><span class="wtag">Recruit</span><h5>Patient recruited</h5><p>Enrolled, and the <b>PPGX ordering bundle</b> placed up front.</p></div>
+      <div class="way-step"><span class="wtag">Test</span><h5>Lab performs the test</h5><p>Panel run; result emailed to NUHS RPA.</p></div>
+      <div class="way-step"><span class="wtag">Automate</span><h5>RPA builds the HL7 result</h5><p>Reads the Excel, auto-generates the message — no retyping.</p></div>
+      <div class="way-step"><span class="wtag">File</span><h5>Filed into NGEMR</h5><p>Lands via interface as <b>discrete data</b>, not a document.</p></div>
+      <div class="way-step"><span class="wtag">Verify</span><h5>Verified by NUH lab</h5><p>Final check before it can drive anything clinical.</p></div>
+      <div class="way-step live"><span class="wtag">Prompt</span><h5>Prompts guide ordering</h5><p>At prescribing, driven by the PPGX result — alternative named.</p></div>
+      <div class="way-step"><span class="wtag">Monitor</span><h5>Monitored in NGEMR</h5><p>Every firing watched, so prompts keep earning their place.</p></div>
     </div>
 
     <div class="bulb"><span class="bulb-i">💡</span><div><b>Tested once. Protecting every order after.</b> In the NUHS Clinical Implementation Pilot, pre-emptive panels were ordered for <b>3,523 patients</b>, and <b>19.7%</b> of the interruptive advisories that fired led to a prescription change — comparable to University of Florida (~20%).</div></div>
