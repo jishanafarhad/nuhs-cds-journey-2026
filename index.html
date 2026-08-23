@@ -1012,7 +1012,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;color:var(--ink);background:var(
   .f1-gap{font-size:13px;min-width:64px}
   .f1-lights i{width:32px;height:32px}
   .sb-nm{font-size:1rem}
-  .sgwrap{--u:15px}
+  .sgwrap{--u:17px}
   .sg-stage{height:clamp(16rem, calc(100vh - 30rem), 24rem);max-width:44rem}
   .sg-geno,.sg-cap,.sg-skip{font-size:1.05rem}
   .svn-field{max-height:30rem}
@@ -1251,6 +1251,22 @@ body{font-family:'DM Sans',system-ui,sans-serif;color:var(--ink);background:var(
   #s3-stage2 .footer-note{margin-top:.7rem}
   #s3-stage2 div[style*="justify-content:flex-end"]{margin-top:.8rem!important}
 }
+
+/* ═══ FINAL · sleeping-gene page: one column, no break-out, bigger animation ═══ */
+#s3 #s3-stage2 .scene{max-width:72rem;padding:1.1rem 2rem 1.2rem}
+#s3 #s3-stage2 .s-sub{max-width:none;margin:.3rem 0 .6rem}
+#s3 #s3-stage2 .sgwrap{max-width:none;padding:.9rem 1.3rem 1rem}
+#s3 #s3-stage2 .sg-stage{height:clamp(15rem,calc(100vh - 34rem),27rem);max-width:58rem;margin:.5rem auto 0}
+#s3 #s3-stage2 .way{width:auto;margin:.8rem 0 .3rem;margin-left:0;transform:none;
+  grid-template-columns:repeat(7,minmax(0,1fr));gap:.65rem}
+#s3 #s3-stage2 .way-step{padding:.72rem .75rem}
+@media (max-width:1500px){
+  #s3 #s3-stage2 .way{grid-template-columns:repeat(auto-fit,minmax(175px,1fr))}
+}
+
+#s3 #s3-stage2 .sg-cap{font-size:1.12rem}
+#s3 #s3-stage2 .sg-geno{font-size:1.08rem}
+#s3 #s3-stage2 .sg-prompt .tx{font-size:.95rem}
 
 </style>
 </head>
