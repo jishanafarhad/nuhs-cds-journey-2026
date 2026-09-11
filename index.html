@@ -984,7 +984,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;color:var(--ink);background:var(
 .deck-row{align-items:flex-start}
 
 /* ═══════════════ 24" TOUCHSCREEN KIOSK SCALING ═══════════════ */
-@media (min-width:1500px){
+@media (min-width:1800px){
   html{font-size:18.5px}
   .deck{max-width:78rem}
   .deck-row{gap:1.5rem}
@@ -1024,7 +1024,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;color:var(--ink);background:var(
   #s5 .f5 .nlabel.mid{font-size:15px}
   #s5 .f5 .d-body p,#s5 .f5 .d-body li{font-size:.95rem}
 }
-@media (min-width:1900px){
+@media (min-width:2150px){
   html{font-size:20.5px}
   .fn canvas{max-width:620px}
 }
@@ -1115,7 +1115,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;color:var(--ink);background:var(
 
 /* ── alignment pass, tuned for the 24" screen ── */
 /* one content column per card family: 84rem for the two wide cards, 76rem for everything else */
-@media (min-width:1500px){
+@media (min-width:1800px){
   .scene{max-width:76rem}
   #s1 .scene,#s3 .scene{max-width:84rem}
 }
@@ -1129,7 +1129,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;color:var(--ink);background:var(
 .sgwrap{max-width:100%}
 
 /* text blocks were capped in px, so they shrank into the corner on the big screen — scale them in rem */
-@media (min-width:1500px){
+@media (min-width:1800px){
   .s-sub,.s-activity{max-width:52rem}
   .bulb{max-width:58rem}
   .pullq{max-width:55rem}
@@ -1197,7 +1197,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;color:var(--ink);background:var(
 }
 
 /* ═══════════════ FIT PASS · four screens, 24" no-scroll ═══════════════ */
-@media (min-width:1500px){
+@media (min-width:1800px){
   /* HOME — everything on one screen */
   .home-hero{padding:.5rem 2rem .2rem}
   .home-script{font-size:1rem;margin-bottom:0}
@@ -1260,7 +1260,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;color:var(--ink);background:var(
 #s3 #s3-stage2 .way{width:auto;margin:.8rem 0 .3rem;margin-left:0;transform:none;
   grid-template-columns:repeat(7,minmax(0,1fr));gap:.65rem}
 #s3 #s3-stage2 .way-step{padding:.72rem .75rem}
-@media (max-width:1500px){
+@media (max-width:1800px){
   #s3 #s3-stage2 .way{grid-template-columns:repeat(auto-fit,minmax(175px,1fr))}
 }
 
@@ -1275,7 +1275,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;color:var(--ink);background:var(
 /* ═══ jackpot alert: the 1-July look — badge inside the amber corner, alert fills its card ═══ */
 .sample-badge{position:static;float:right;top:auto;right:auto;
   margin:10px 10px 8px 16px;box-shadow:0 2px 8px rgba(11,31,77,.25)}
-@media (min-width:1500px){
+@media (min-width:1800px){
   .alert-frame{max-width:100%}
   .sample-badge{font-size:.62rem;padding:.3rem .7rem;margin:12px 12px 10px 18px}
   .alert-amber{font-size:.84rem;padding:1.2rem 1.4rem}
@@ -1286,6 +1286,37 @@ body{font-family:'DM Sans',system-ui,sans-serif;color:var(--ink);background:var(
   .ack{font-size:.8rem;padding:.6rem 1rem}
 }
 
+
+/* ═══ Kill It or Keep It: restore the slice-game alert exactly as designed ═══
+   (the jackpot badge/scale fixes are card-3 behaviour; they must not leak here) */
+.slicebox{position:relative}
+.slicebox .sample-badge{position:absolute;float:none;top:8px;right:8px;margin:0;
+  font-size:.58rem;padding:.24rem .55rem;box-shadow:0 2px 6px rgba(11,31,77,.25)}
+@media (min-width:1800px){
+  #s2 .ack{font-size:12px;padding:.5rem .8rem}
+}
+
+/* ═══ Game 1 (Kill It or Keep It): July-exact sizing inside the fixed alert card ═══
+   The game's own CSS never changed — the kiosk root-font scale was inflating its text.
+   These pin every size back to the July pixel values at booth scale only. */
+@media (min-width:1800px){
+  #s2 .fruit .ftitle{font-size:17px}
+  #s2 .fruit .ftext{font-size:13.6px}
+  #s2 .fruit .fstat b{font-size:17px}
+  #s2 .bpa-banner{font-size:14.4px}
+  #s2 .bpa-caution{font-size:13.4px}
+  #s2 .bpa-caution b{font-size:14.7px}
+  #s2 .bpa-caution .cw-ic{font-size:12.5px}
+  #s2 .bpa-ttl .dot2{font-size:11px}
+  #s2 .bpa-link{font-size:13.4px}
+  #s2 .bpa-btn{font-size:13px}
+  #s2 .bpa-count{font-size:11px}
+  #s2 .nwhy-t p{font-size:13px}
+  #s2 .slice-num b{font-size:59px}
+  #s2 .slice-num.juice-num b,#s2 .slice-num.good-num b,#s2 .slice-num.miss-num b{font-size:40px}
+  #s2 .slice-num.kept-num b{font-size:46px}
+  #s2 .slice-num span{font-size:16px}
+}
 </style>
 </head>
 <body>
@@ -2577,7 +2608,7 @@ const FN=(function(){
     wrap=document.getElementById('fn');finalEl=document.getElementById('fnFinal');}
   function layout(){
     DPR=Math.min(window.devicePixelRatio||1,2);
-    const CAP=window.innerWidth>=1500?620:520;
+    const CAP=window.innerWidth>=1800?620:520;
     W=Math.min(wrap.clientWidth-52,CAP);if(W<240)W=240;
     H=Math.min(W*1.32,Math.round(window.innerHeight*0.62));
     cv.width=W*DPR;cv.height=H*DPR;cv.style.width=W+'px';cv.style.height=H+'px';
