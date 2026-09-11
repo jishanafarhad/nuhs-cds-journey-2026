@@ -1342,6 +1342,15 @@ body{font-family:'DM Sans',system-ui,sans-serif;color:var(--ink);background:var(
   #s3 #s3-stage2 .sgwrap{padding:1.2rem 1.4rem 1.1rem}
   #s3 #s3-stage2 .sg-stage{height:clamp(12rem,calc(100vh - 36rem),22rem);margin:1rem auto 0}
 }
+
+/* ═══ FLUID SCALE — the deck sizes itself to the screen it's on ═══
+   Root font tracks the viewport (whichever of width/height is tighter),
+   so every rem-based measurement — which is nearly everything — scales
+   continuously: 14" ≈ 15px, 16" ≈ 18px, 24" 1080p ≈ 20px. Phones (<900px)
+   keep the fixed mobile design. */
+@media (min-width:900px){
+  html{font-size:clamp(13.5px, min(1.06vw, 1.88vh), 21px)}
+}
 </style>
 </head>
 <body>
@@ -2864,7 +2873,7 @@ const S5=(function(){
     c.setAttribute('class','dot '+cls);
     c.setAttribute('opacity','0');
     const am=document.createElementNS(NS,'animateMotion');
-    am.setAttribute('dur',dur+'s');am.setAttribute('begin',delay+'s');am.setAttribute('fill','freeze');
+    am.setAttribute('dur',dur+'s');am.setAttribute('begin','indefinite');am.setAttribute('fill','freeze');
     const mp=document.createElementNS(NS,'mpath');
     mp.setAttributeNS('http://www.w3.org/1999/xlink','href',pathId);
     mp.setAttribute('href',pathId);
@@ -2873,8 +2882,9 @@ const S5=(function(){
     fade.setAttribute('attributeName','opacity');
     fade.setAttribute('values','0;1;1;0');
     fade.setAttribute('keyTimes','0;0.12;0.82;1');
-    fade.setAttribute('dur',dur+'s');fade.setAttribute('begin',delay+'s');fade.setAttribute('fill','freeze');
+    fade.setAttribute('dur',dur+'s');fade.setAttribute('begin','indefinite');fade.setAttribute('fill','freeze');
     c.appendChild(am);c.appendChild(fade);
+    c._kick=function(){try{am.beginElementAt(delay);fade.beginElementAt(delay);}catch(e){}};
     return c;
   }
   function dots(){
@@ -2894,8 +2904,7 @@ const S5=(function(){
     let rt=1.55;
     queue.forEach(q=>{g.appendChild(mk(q.p,+rt.toFixed(2),+(1.05+Math.random()*0.4).toFixed(2),q.c));
       rt+=0.09+Math.random()*0.24;});
-    const svg=document.querySelector('#s5 svg.flow');
-    if(svg&&svg.setCurrentTime)svg.setCurrentTime(0);
+    Array.prototype.forEach.call(g.childNodes,function(c){if(c._kick)c._kick();});
   }
   function start(){close();dots();if(iv)clearInterval(iv);iv=setInterval(dots,9000);}
   function stop(){if(iv)clearInterval(iv);iv=null;}
