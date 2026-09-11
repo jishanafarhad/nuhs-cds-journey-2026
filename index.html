@@ -1317,6 +1317,31 @@ body{font-family:'DM Sans',system-ui,sans-serif;color:var(--ink);background:var(
   #s2 .slice-num.kept-num b{font-size:46px}
   #s2 .slice-num span{font-size:16px}
 }
+
+/* ═══ LAPTOP LAYER — the deck's home for its post-booth life ═══
+   Heights were tuned to a 1080p kiosk; a laptop viewport is ~750–850px tall.
+   This compresses the home screen and the PGx animation to fit it. */
+@media (min-width:900px) and (max-width:1799px){
+  .home-hero{padding:.6rem 2rem .2rem}
+  .home-script{font-size:.95rem;margin-bottom:0}
+  .home-title{font-size:2rem}
+  .home-sub{font-size:.85rem;margin-top:.35rem}
+  .home-quote{margin-top:.4rem;font-size:.9rem;min-height:1.4em}
+  .deck{margin-top:.7rem;gap:.7rem}
+  .deck-row{gap:.9rem}
+  .deck .flip,.deck .flip.wide{width:13.2rem;height:14rem}
+  .flip .cicon{font-size:2rem;margin:.2rem 0 .1rem}
+  .flip .cgame{font-size:1.12rem;margin-bottom:.3rem}
+  .flip .cphrase{font-size:.78rem}
+  .flip .chint{margin-top:.45rem;font-size:9px}
+  .flip .btitle{font-size:1rem;margin-bottom:.8rem}
+  .flip .enter{font-size:12px;padding:9px 20px}
+  .row-lbl{margin:.05rem 0 -.2rem;font-size:9px}
+  .deck-cta{font-size:.82rem;margin-top:.35rem}
+  .home-foot{padding:.5rem 2rem;margin-top:.45rem}
+  #s3 #s3-stage2 .sgwrap{padding:1.2rem 1.4rem 1.1rem}
+  #s3 #s3-stage2 .sg-stage{height:clamp(12rem,calc(100vh - 36rem),22rem);margin:1rem auto 0}
+}
 </style>
 </head>
 <body>
